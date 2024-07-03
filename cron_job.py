@@ -61,7 +61,6 @@ def last_updated():
 
 def cleaning_data(data):
     data.reset_index(inplace=True)
-    # data.drop('Stock Splits', axis=1, inplace=True)
     return data
 
 def updated_db(conn, df, ticker): 
