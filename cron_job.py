@@ -36,7 +36,6 @@ def fetch_new_data(ticker, last_retrieval_datetime):
     return new_data
 
 def last_updated():
-
     conn = psycopg2.connect(database='pagila',
                         user= SQL_User,
                         host= Host,
@@ -62,15 +61,14 @@ def last_updated():
 
 def cleaning_data(data):
     data.reset_index(inplace=True)
-    data.drop('Stock Splits', axis=1, inplace=True)
+    # data.drop('Stock Splits', axis=1, inplace=True)
     return data
 
 def updated_db(conn, df, ticker): 
-  
+
     tuples = [tuple(x) for x in df.to_numpy()] 
-  
+
     cols = ','.join(list(df.columns)) 
-    # SQL query to execute 
     query = "INSERT INTO %s(%s) VALUES %%s" % (f'student.nm_{ticker}', cols) 
     cursor = conn.cursor() 
     try: 
@@ -100,3 +98,4 @@ def update_db_new_value(ticker, last_retrieval_time):
 last_time_updated = last_updated()
 for i in NASDAQ.keys():
     update_db_new_value(i, last_time_updated)
+
