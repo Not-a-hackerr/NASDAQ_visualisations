@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 import yfinance as yf
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import timedelta
 import psycopg2.extras as extras
 
 # Web Scrap to get all 100 NASDAQ companies and their corresponding tickers
@@ -20,6 +20,7 @@ tickers = [i.text for i in NDQ.findAll('td', class_="sym svelte-eurwtr")]
 comp_name = [i.text for i in NDQ.findAll('td', class_="slw svelte-eurwtr")]
 
 NASDAQ = dict(zip(tickers,comp_name))
+
 
 load_dotenv()
 SQL_User = os.getenv('SQLUser')
@@ -36,6 +37,7 @@ def fetch_new_data(ticker, last_retrieval_datetime):
     return new_data
 
 def last_updated():
+
     conn = psycopg2.connect(database='pagila',
                         user= SQL_User,
                         host= Host,
@@ -61,12 +63,13 @@ def last_updated():
 
 def cleaning_data(data):
     data.reset_index(inplace=True)
+    # data.drop('Stock Splits', axis=1, inplace=True)
     return data
 
 def updated_db(conn, df, ticker): 
-
+  
     tuples = [tuple(x) for x in df.to_numpy()] 
-
+  
     cols = ','.join(list(df.columns)) 
     query = "INSERT INTO %s(%s) VALUES %%s" % (f'student.nm_{ticker}', cols) 
     cursor = conn.cursor() 
@@ -94,7 +97,10 @@ def update_db_new_value(ticker, last_retrieval_time):
     
     return updated_db(conn, new_data, ticker)
     
-last_time_updated = last_updated()
-for i in NASDAQ.keys():
-    update_db_new_value(i, last_time_updated)
+if __name__ =="__main__":
+    last_time_updated = last_updated()
+    for i in NASDAQ:
+        update_db_new_value(i, last_time_updated)
+
+
 
