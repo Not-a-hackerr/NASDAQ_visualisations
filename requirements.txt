@@ -5,3 +5,7 @@ streamlit-extras
 yfinance
 streamlit
 requests
+plotly.express
+plotly.graph_objects
+streamlit
+BeautifulSoup
