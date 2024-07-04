@@ -4,9 +4,7 @@ import pandas as pd
 import yfinance as yf
 import os
 from dotenv import load_dotenv
-
 from cron_job import NASDAQ
-
 
 
 load_dotenv()
@@ -78,5 +76,4 @@ conn = psycopg2.connect(database='pagila',
 
 if __name__ =="__main__":
     replace_table(conn, 'nasdaq_info', df)
-
 
