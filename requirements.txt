@@ -1,9 +1,1 @@
-pandas 
 psycopg2
-streamlit 
-plotly.express as px
-streamlit_extras.stateful_button
-plotly.graph_objects as go
-yfinance as yf
-psycopg2 import extras
-streamlit_extras.stateful_button import button
