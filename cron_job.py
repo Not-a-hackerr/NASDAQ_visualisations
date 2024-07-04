@@ -4,7 +4,6 @@ import psycopg2
 import requests
 from bs4 import BeautifulSoup
 import yfinance as yf
-import pandas as pd
 from datetime import timedelta
 import psycopg2.extras as extras
 
@@ -101,6 +100,4 @@ if __name__ =="__main__":
     last_time_updated = last_updated()
     for i in NASDAQ:
         update_db_new_value(i, last_time_updated)
-
-
 
