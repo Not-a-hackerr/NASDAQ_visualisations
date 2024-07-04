@@ -1,11 +1,10 @@
-import os
-from dotenv import load_dotenv
 import psycopg2
 import requests
 from bs4 import BeautifulSoup
 import yfinance as yf
 from datetime import timedelta
 import psycopg2.extras as extras
+import streamlit as st
 
 # Web Scrap to get all 100 NASDAQ companies and their corresponding tickers
 url = 'https://stockanalysis.com/list/nasdaq-100-stocks/'
@@ -20,12 +19,9 @@ comp_name = [i.text for i in NDQ.findAll('td', class_="slw svelte-eurwtr")]
 
 NASDAQ = dict(zip(tickers,comp_name))
 
-
-load_dotenv()
-SQL_User = os.getenv('SQLUser')
-SQL_Pass = os.getenv('SQLPass')
-Host = os.getenv('Host')
-
+SQL_User = st.secrets['SQLUser']
+SQL_Pass = st.secrets['SQLPass']
+Host = st.secrets['Host']
 
 def fetch_new_data(ticker, last_retrieval_datetime):
     start_datetime = last_retrieval_datetime + timedelta(hours=1)

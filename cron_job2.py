@@ -2,15 +2,12 @@ import psycopg2
 from psycopg2 import extras
 import pandas as pd
 import yfinance as yf
-import os
-from dotenv import load_dotenv
 from cron_job import NASDAQ
+import streamlit as st
 
-
-load_dotenv()
-SQL_User = os.getenv('SQLUser')
-SQL_Pass = os.getenv('SQLPass')
-Host = os.getenv('Host')
+SQL_User = st.secrets['SQLUser']
+SQL_Pass = st.secrets['SQLPass']
+Host = st.secrets['Host']
 
 def execute_values(conn, df, table):
     tuples = [tuple(x) for x in df.to_numpy()]

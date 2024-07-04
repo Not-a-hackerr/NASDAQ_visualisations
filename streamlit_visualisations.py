@@ -1,18 +1,15 @@
 import pandas as pd
 import psycopg2
-from dotenv import load_dotenv
-import os
 import streamlit as st
 import plotly.express as px
 from streamlit_extras.stateful_button import button
 from cron_job import NASDAQ
 import plotly.graph_objects as go
 
+SQL_User = st.secrets['SQLUser']
+SQL_Pass = st.secrets['SQLPass']
+Host = st.secrets['Host']
 
-load_dotenv()
-SQL_User = os.getenv('SQLUser')
-SQL_Pass = os.getenv('SQLPass')
-Host = os.getenv('Host')
 
 conn = psycopg2.connect(database='pagila',
                         user= SQL_User,
