@@ -4,5 +4,4 @@ streamlit-extras
 yfinance
 requests
 plotly
-BeautifulSoup
 bs4
