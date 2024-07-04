@@ -3,7 +3,6 @@ pandas
 streamlit-extras
 yfinance
 requests
-plotly.express
-plotly.graph_objects
+plotly
 BeautifulSoup
 bs4
