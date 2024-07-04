@@ -1,1 +1,10 @@
-psycopg2
+plotly-express
+psycopg2-binary 
+pandas
+streamlit
+streamlit-extras
+yfinance
+streamlit
+requests
+plotly.express
+plotly.graph_objects
