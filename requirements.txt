@@ -1,10 +1,9 @@
-import pandas as pd
-import psycopg2
-import streamlit as st
-import plotly.express as px
-from streamlit_extras.stateful_button import button
-from cron_job import NASDAQ
-import plotly.graph_objects as go
-import yfinance as yf
-from psycopg2 import extras
-from streamlit_extras.stateful_button import button
+pandas 
+psycopg2
+streamlit 
+plotly.express as px
+streamlit_extras.stateful_button
+plotly.graph_objects as go
+yfinance as yf
+psycopg2 import extras
+streamlit_extras.stateful_button import button
