@@ -102,11 +102,17 @@ else:
     display_stock_comparing(start_date, end_date,stock1,stock2)
 ```
 
+![Alt Text](./companies_error.png)
+![Alt Text](./dates_error.png)
 
 
+#### Graphs
+
+With the website there was a heavy bias towards using plotly graphs due to their high interactability. For instance the market capitalisation tree graph:
 
 
-With the website there was a bias towards using plotly graphs due to their highly interactability. For instance the market capitalisation tree graph:
+![Alt Text](./mark_cap1.png)
 
+![Alt Text](./mark_cap2.png)
 
-## Security
+![Alt Text](./mark_cap3.png)
