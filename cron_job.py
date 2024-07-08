@@ -100,24 +100,6 @@ if __name__ =="__main__":
         update_db_new_value(i, last_time_updated)
 
 
-
-def execute_values(conn, df, table):
-    tuples = [tuple(x) for x in df.to_numpy()]
-    cols = ','.join(list(df.columns))
-    
-    query = f"INSERT INTO {table}({cols}) VALUES %s"
-    cursor = conn.cursor()
-    try:
-        extras.execute_values(cursor, query, tuples)
-        conn.commit()
-    except (Exception, psycopg2.DatabaseError) as error:
-        print("Error:", error)
-        conn.rollback()
-        cursor.close()
-        return 1
-    print("execute_values() done")
-    cursor.close()
-
 def replace_table(conn, table_ticker, df):
     cursor = conn.cursor()
 
@@ -138,7 +120,7 @@ def replace_table(conn, table_ticker, df):
     cursor.execute(create_sql)
     conn.commit()
 
-    return execute_values(conn, df, f'student.nm_{table_ticker}')
+    return updated_db(conn, df, f'student.nm_{table_ticker}')
 
 def get_company_info(ticker_symbol):
     stock = yf.Ticker(ticker_symbol)
