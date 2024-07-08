@@ -5,6 +5,8 @@
 - [Project Brief](#project-brief)
 - [Data](#data)
 - [Project Pipeline](#project-pipeline)
+- [Cron Job](#crone-job)
+- [Streamlit Visualisations](#streamlit-visualisations)
 
 
 ## Project Brief
@@ -36,7 +38,8 @@ The other table contains information about the market captialization of each com
 ![Alt Text](./project_pipeline.png)
 
 
-## crone_job.py
+## Crone Job
+
 
 The cron_job python file includes 7 functions that all serve different purposes. Before any functions are made the file scraps a [website](https://stockanalysis.com/list/nasdaq-100-stocks/) for the tickers of the NASDAQ-100 these are used by yfinance to identify companies. 
 
@@ -88,7 +91,7 @@ if __name__ =="__main__":
 This function simply fetchs new data from yfinance.
 
 
-## streamlit_visualisations.py 
+## Streamlit Visualisations
 This file contains all the logic for the streamlit website. The python file is split into various functions that respresent a section of the website. There are two main sections within the website these include the stock price comparison between different companies and the market capitalisation. The main reason to this is so that I can easily move sections of my website around and to implement error handling. 
 
 #### Error Handling 
