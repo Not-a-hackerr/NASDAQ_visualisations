@@ -2,7 +2,6 @@ import pandas as pd
 import psycopg2
 import streamlit as st
 import plotly.express as px
-from streamlit_extras.stateful_button import button
 from cron_job import NASDAQ
 import plotly.graph_objects as go
 
@@ -77,10 +76,10 @@ def display_market_cap():
 
         col1, col2= st.columns(2, vertical_alignment="center")
         with col1:
-            sect_but = button("Sector", key='button1',use_container_width=True)
+            sect_but = st.checkbox("Sector", key='button1')
         
         with col2:
-            ind_but = button("Industry", key='button2',use_container_width=True)
+            ind_but = st.checkbox("Industry", key='button2')
         
         if 'cate_compare' not in st.session_state:
             st.session_state['cate_compare'] = [px.Constant('NASDAQ'), 'name']
@@ -92,7 +91,7 @@ def display_market_cap():
         else:
             if 'sector' in st.session_state.cate_compare:
                 st.session_state['cate_compare'].remove('sector')
-            
+  
 
         if ind_but:
             if 'industry' not in st.session_state['cate_compare']:
@@ -122,7 +121,7 @@ def display_market_cap():
         st.write(f"little hint: That number is in the {num_size[commas_num]}")
 
 
-def display_stock_sharing(start_date, end_date):
+def display_stock_comparing(start_date, end_date,stock1,stock2):
     tab1,tab2 = st.tabs(['Metrics', 'Graphs'])
     with tab1:
         def get_last_date_last_month():
@@ -135,17 +134,18 @@ def display_stock_sharing(start_date, end_date):
 
             return last_month[-1]
         
-
         c1, c2 = st.columns(2)
         with c1:
-            st.metric(label='Latest Price Today', value=f"$ {stock_1_data.iloc[len(stock_1_data) - 1]['close']}")
-            st.metric(label='Last Month Last Day', value=f"$ {stock_1_data.loc[stock_1_data['datetime']==get_last_date_last_month()]['close'].values[0]}")
-            st.metric(label='Beginning of year', value=f"$ {stock_1_data.iloc[0]['close']}")
+            st.subheader(f'{stock1}')
+            st.metric(label='Latest Price Today', value=f"$ {round(stock_1_data.iloc[len(stock_1_data) - 1]['close'],2)}")
+            st.metric(label='Last Month Last Day', value=f"$ {round(stock_1_data.loc[stock_1_data['datetime']==get_last_date_last_month()]['close'].values[0],2)}")
+            st.metric(label='Beginning of year', value=f"$ {round(stock_1_data.iloc[0]['close'],2)}")
         
         with c2:
-            st.metric(label='Latest Price Today', value=f"$ {stock_2_data.iloc[len(stock_2_data) - 1]['close']}")
-            st.metric(label='Last Month Last Day', value=f"$ {stock_2_data.loc[stock_2_data['datetime']==get_last_date_last_month()]['close'].values[0]}")
-            st.metric(label='Beginning of year', value=f"$ {stock_2_data.iloc[0]['close']}")
+            st.subheader(f'{stock2}')
+            st.metric(label='Latest Price Today', value=f"$ {round(stock_2_data.iloc[len(stock_2_data) - 1]['close'],2)}")
+            st.metric(label='Last Month Last Day', value=f"$ {round(stock_2_data.loc[stock_2_data['datetime']==get_last_date_last_month()]['close'].values[0],2)}")
+            st.metric(label='Beginning of year', value=f"$ {round(stock_2_data.iloc[0]['close'],2)}")
 
     with tab2:
         
@@ -223,7 +223,7 @@ if start_date > end_date:
 elif stock1 == stock2:
     st.error("Please reselect two different Companies")
 else:
-    display_stock_sharing(start_date, end_date)
+    display_stock_comparing(start_date, end_date,stock1,stock2)
 
 st.divider()
 

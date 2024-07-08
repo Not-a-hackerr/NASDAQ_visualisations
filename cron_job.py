@@ -151,9 +151,6 @@ def get_company_info(ticker_symbol):
         'industry': info.get('industry')
     }
 
-company_data = [get_company_info(ticker) for ticker in NASDAQ]
-df = pd.DataFrame(company_data)
-df['market_cap_billions'] = df['market_cap'] / 1e9
 
 conn = psycopg2.connect(database='pagila',
                         user= SQL_User,
@@ -163,5 +160,8 @@ conn = psycopg2.connect(database='pagila',
 )
     
 if __name__ =="__main__":
+    company_data = [get_company_info(ticker) for ticker in NASDAQ]
+    df = pd.DataFrame(company_data)
+    df['market_cap_billions'] = df['market_cap'] / 1e9
     replace_table(conn, 'nasdaq_info', df)
 
