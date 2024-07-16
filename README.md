@@ -35,7 +35,7 @@ The other table contains information about the market captialization of each com
 
 ## Project Pipeline
 
-![Alt Text](./project_pipeline.png)
+![Alt Text](pictures/project_pipeline.png)
 
 
 ## Crone Job
@@ -105,8 +105,8 @@ else:
     display_stock_comparing(start_date, end_date,stock1,stock2)
 ```
 
-![Alt Text](./companies_error.png)
-![Alt Text](./dates_error.png)
+![Alt Text](pictures/companies_error.png)
+![Alt Text](pictures/dates_error.png)
 
 
 #### Graphs
@@ -114,8 +114,8 @@ else:
 With the website there was a heavy bias towards using plotly graphs due to their high interactability. For instance the market capitalisation tree graph:
 
 
-![Alt Text](./mark_cap1.png)
+![Alt Text](pictures/mark_cap1.png)
 
-![Alt Text](./mark_cap2.png)
+![Alt Text](pictures/mark_cap2.png)
 
-![Alt Text](./mark_cap3.png)
+![Alt Text](pictures/mark_cap3.png)
